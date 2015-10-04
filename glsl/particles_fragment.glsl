@@ -1,6 +1,5 @@
 uniform sampler2D map;
 varying vec2 vUv;
-varying vec4 vPosition;
 varying float vColor;
 
 float rand(vec2 co){

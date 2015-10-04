@@ -3,7 +3,6 @@ uniform float width;
 uniform float height;
 uniform float pointSize;
 varying vec2 vUv;
-varying vec4 vPosition;
 void main() {
     vUv = position.xy + vec2( 0.5 / width, 0.5 / height );
     vec3 color = texture2D( map, vUv ).rgb ;
