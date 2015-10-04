@@ -1,0 +1,40 @@
+{
+  "name": "field_notes_ssotl",
+  "version": "0.0.0",
+  "description": "Field_Notes - Seven Senes on the Land",
+  "main": "index.html",
+  "scripts": {
+    "start": "beefy index.js:bundle.js 8080"
+  },
+  "browser": "index.js",
+  "repository": "",
+  "author": "Avnerus",
+  "license": "BSD",
+  "devDependencies": {
+    "beefy": ">=0.7.1",
+    "browserify": ">=3.20.0",
+    "browserify-shim": "^3.8.10",
+    "glslify": "^2.3.1"
+  },
+  "window": {
+    "title": "SSOTL",
+    "toolbar": false,
+    "frame": false,
+    "width": 1920,
+    "height": 1080,
+    "position": "mouse",
+    "fullscreen": true
+  },
+  "dependencies": {
+    "glsl-curl-noise": "0.0.4"
+  },
+  "browserify": {
+    "transform": [
+      "glslify",
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "three": "global:THREE"
+  }
+}
