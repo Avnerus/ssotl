@@ -25,6 +25,8 @@ var fboParticlesArrays = [];
 var fboMaterials = [];
 var fboMeshes = [];
 
+var wind = 1;
+
 var rtTexturePos, rtTexturePos2;
 
 
@@ -43,6 +45,11 @@ window.onload = function() {
     scene.add( cube );*/
 
 
+
+    document.addEventListener( 'mousemove', function() {
+        wind += 0.05;
+        console.log("wind: ", wind);
+    }, false );
     
     animate();
 }
@@ -59,6 +66,12 @@ function update(dt) {
   camera.updateProjectionMatrix();
   camera.position.y -= dt * 10.0;
   camera.position.z += dt * 10.0;
+
+  if (wind > 1) {
+      wind -= 0.05
+  } else {
+      wind = 1;
+  }
 }
 
 function render(dt) {
@@ -71,6 +84,7 @@ function render(dt) {
         fboParticles.in = fboParticles.out;
         fboParticles.out = tmp;
         simulationShaders[i].uniforms.tPositions.value = fboParticles.in;
+        simulationShaders[i].uniforms.wind.value = wind;
         fboParticles.simulate(fboParticles.out);
         fboMaterials[i].uniforms.map.value = fboParticles.out;
     }
@@ -114,7 +128,8 @@ function createFBO(text, index) {
             uniforms: {
                 tPositions: { type: "t", value: texture },
                 origin: { type: "t", value: texture },
-                timer: { type: "f", value: 0}
+                timer: { type: "f", value: 0},
+                wind: { type: "f", value: wind}
             },
             vertexShader: simulationVertexShader,
             fragmentShader:  simulationFragmentShader
