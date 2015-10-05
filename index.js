@@ -47,7 +47,7 @@ window.onload = function() {
 
 
     document.addEventListener( 'mousemove', function() {
-        wind += 0.08;
+        wind += 0.2;
         console.log("wind: ", wind);
     }, false );
     
@@ -68,7 +68,7 @@ function update(dt) {
   camera.position.z += dt * 10.0;
 
   if (wind > 1) {
-      wind -= 0.05
+      wind -= 0.1
   } else {
       wind = 1;
   }
@@ -153,7 +153,7 @@ function createFBO(text, index) {
                 "map": { type: "t", value: rtTexturePos },
                 "width": { type: "f", value: fboWidth },
                 "height": { type: "f", value: fboHeight },
-                "pointSize": { type: "f", value: 1.2 }
+                "pointSize": { type: "f", value: 1.3 }
             },
             vertexShader: particlesVertexShader,
             fragmentShader: particlesFragmentShader,
